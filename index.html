@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"/>
+
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;600;700&display=swap" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="estilos.css" />
+
+</head>
+<body>
+    <div class="principal">
+        <div class="cont-texto">
+            <h1 class="titulo">Agenda <img class="icons" src="imagenes/agenda.png" alt="" />
+            </h1>
+        </div>
+                <path
+                    d="M0.00,49.98 C86.05,146.53 273.98,-84.38 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                    style="stroke: none; fill: #fff;"
+                ></path>
+            </svg>
+        </div>
+    </div>
+
+    <div class="container-md" id="app">
+        <div class="principal-container">
+            <div class="col-md-4">
+                <div class="form">
+
+                    <div class="control">
+                        <img class="icons" src="imagenes/nombre.png" alt="" />
+                        <div class="grupo">
+                            <input class="form-control" type="text" id="txtNombre" placeholder="Nombre" v-model="contactoNombre" v-on:keyup.enter="agregarContacto"/>
+                        </div>
+                    </div>
+
+                    <div class="control">
+                        <img class="icons" src="imagenes/apellido.png" alt="" />
+                        <div class="grupo">
+                            <input class="form-control" type="text" id="apellido" placeholder="Apellido" v-model="contactoApellido" v-on:keyup.enter="agregarContacto"/>
+                        </div>
+                    </div>
+
+                    <div class="control">
+                        <img class="icons" src="imagenes/telefono.png" alt="" />
+                        <div class="grupo">
+                            <input class="form-control" type="text" placeholder="Teléfono" id="telefono" v-model="contactoTelefono" v-on:keyup.enter="agregarContacto"/>
+                        </div>
+                    </div>
+
+                    <div class="control">
+                        <img class="icons" src="imagenes/instagram.png" alt="" />
+                        <div class="grupo">
+                            <input class="form-control" type="text" placeholder="Instagram" data-mask="000-000-0000" v-model="contactoInsta"
+                                v-on:keyup.enter="agregarContacto"/>
+                        </div>
+                    </div>
+
+                    <div class="control">
+                        <img class="icons" src="" alt="" />
+                        <div class="grupo">
+                            <input class="form-control" type="text" id="direccion" placeholder="Dirección" v-model="contactoDireccion" v-on:keyup.enter="agregarContacto"/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="botones">
+                        <button type="submit" id="boton-submit" class="btn btn-primary boton" @click="agregarContacto">Agregar</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div>
+
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container-fluid">
+                      <a class="navbar-brand">Barra de busqueda</a>
+                      <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                      </form>
+                    </div>
+                  </nav>
+                  <br>
+    
+    
+                <table class="table table-light table-hover animate__animated animate__fadeIn">
+                    <thead class="">
+                        <tr class="head-table">
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Número</th>
+                            <th>Instagram</th>
+                            <th>Dirección</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody v-for="(item, index) of contactos">
+                        <tr :class="[ item.seleccionado ? 'table-info' : ' ']">
+                            <td>{{item.nombre}}</td>
+                            <td>{{item.apellido}}</td>
+                            <td>{{item.telefono}}</td>
+                            <td>{{item.insta}}</td>
+                            <td>{{item.direccion}}</td>
+                            <td>
+                                <button class="boton-edit btn btn-success btn-sm" @click="mostrarContacto(index)">E</button>
+                                <button class="boton-delete btn btn-danger btn-sm" @click="eliminar(index)">X</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+        
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script src="app.js"></script>
+</body>
+</html>
